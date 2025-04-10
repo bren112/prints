@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+:root {
+    --primary: #272727;
+    --secondary: #000000;
+    --verde: #7dba06;
+    --cinza: #A4A1A1;
+    --cinzaClaro: #D9D9D9;
+}
+body{
+  background-color: #e2dfdf;
+}
+link{
+  text-decoration: none;
+  
+}
+
+#voltar{
+  margin: 2pc;
+  color:#D9D9D9;
+  text-decoration: none;
+  margin-bottom: 3pc;
+}
+.contadorContainer{
+      display: flex;
+      justify-content: end;
+      margin-right: 3pc;
+      flex-direction: column;
+      align-items: end;
+      margin-bottom: 4pc;
+  
+}
+.contador{
+  background-color: #7dba06;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 3pc;
+  width: 5pc;
+  border-radius: 1pc;
+  text-align: center;
+}
+.subcontainer{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+}
+.text-x1{
+  text-align: center;
+  font-size: 3pc;
+  font-weight: 500;
+}
+p{
+  text-align: center;
+}
+
+
+.container{
+  display: flex
+  ;
+      flex-direction: column;
+      align-items: start;
+      gap: 2px;
+      margin: 2pc;
+}
+
+
+#form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+h2 {
+  color: #333;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+
+
+#submit-button {
+  background-color: #7dba06;
+
+  color: white;
+  padding: 10px 20px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#submit-button:hover {
+  background-color: #93d50d;
+
+}
+
+select {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#message {
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+  text-align: center;
+}
+
+button{
+  cursor: pointer;
+  background-color: #93d50d;
+
+}
+.containerPrints{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 2pc;
+  gap: 2.5pc;
+}
+.cont{
+  background-color: white;
+  width: 15pc;
+  display: flex;
+  flex-direction: column;
+  align-items: anchor-center;
+  border-radius: 1pc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+.cont img{
+  width: 9pc;
+}
+.mt{
+  font-size: 1pc;
+  color: gray;
+  margin-bottom: 1pc;
+}

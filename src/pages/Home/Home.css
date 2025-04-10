@@ -1,0 +1,188 @@
+.impressora img{
+    width: 10pc;
+}
+.impressora{
+    display: flex;
+    justify-content: space-around;
+    gap: 1pc;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    border-radius: 1pc;
+    margin: 1pc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 32pc;
+
+}
+.department-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+  margin: 16px;
+}
+h1{
+  text-align: center;
+  font-size: 2.4pc;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.subheader{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
+.impressora button{
+    background-color: var(--verde);
+    border: none;
+    width: 8pc;
+    height: 2pc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+button{
+  background-color: #93d50d;
+  color: rgb(61, 61, 61);
+  border: none;
+  width: 8pc;
+  height: 2pc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.impressora h1{
+    font-size: 20px;
+}
+.dir{
+    margin: 2pc;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    gap: 2pc;
+}
+  /* Modal */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+  }
+  .world{
+  
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  /* Conteúdo do modal */
+  .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 450px;
+    max-width: 90%;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Adiciona rolagem caso o conteúdo seja muito grande */
+    animation: fadeIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+  }
+  
+  /* Efeito de fade-in quando o modal é aberto */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  /* Fechar o modal */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .close:hover {
+    color: #e74c3c;
+  }
+  
+  /* Estilos de texto dentro do modal */
+  .modal-content h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .modal-content p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  
+  .modal-content button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Quando o modal tem um conteúdo muito longo, aplicamos um max-height */
+  .modal-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .modal-content::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 4px;
+  }
+  
+  .modal-content::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  .progress-container {
+    width: 80%;
+    height: 30px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: green;
+    transition: width 0.3s ease;
+  }
+  
