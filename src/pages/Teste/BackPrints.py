@@ -13,6 +13,179 @@ CORS(app)
 import requests
 import pandas as pd
 
+from flask import jsonify
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+
+# SEG
+def criar_driver_segtrab():
+    chrome_options = Options()
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--incognito")  # modo anônimo
+
+    # Desativa sugestões de senha e alertas do Chrome
+    chrome_options.add_experimental_option("prefs", {
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False
+    })
+
+    service = Service(ChromeDriverManager().install())
+    return webdriver.Chrome(service=service, options=chrome_options)
+
+# Função principal para coletar os dados
+def coletar_segtrab():
+    driver = criar_driver_segtrab()
+    try:
+        driver.get("http://10.10.1.114/sws/index.html")
+        time.sleep(3)
+
+        driver.find_element(By.ID, "ext-gen249").click()
+        time.sleep(3)
+
+        driver.find_element(By.XPATH, "//span[text()='Contadores de uso']").click()
+        time.sleep(3)
+
+        valor_ultima_celula = driver.find_element(
+            By.XPATH,
+            "(//table[contains(@class, 'x-grid3-row-table')]//tr)[3]//td[last()]//div"
+        ).text
+
+        print(f"Valor extraído (Setor SEGTRAB): {valor_ultima_celula}")
+        valor_int = int(valor_ultima_celula.replace(",", "").strip())
+
+        valor_mensal = valor_int - 11859  # base inicial, ajuste se necessário
+
+        return {
+            "valor_coletado": valor_ultima_celula,
+            "valor_mensal": valor_mensal
+        }
+
+    except Exception as e:
+        print(f"Erro ao obter valor do setor SEGTRAB: {e}")
+        return {"erro": str(e)}
+
+    finally:
+        time.sleep(2)
+        driver.quit()
+
+# Rota Flask
+@app.route('/segtrab', methods=['GET'])
+def rota_segtrab():
+    return jsonify(coletar_segtrab())
+
+# ================= REFEITÓRIO =================
+@app.route('/refeitorio', methods=['GET'])
+def rota_refeitorio():
+    try:
+        resultado = obter_valor_refeitorio()
+        return jsonify(resultado)
+    except Exception as e:
+        return jsonify({"erro": str(e)})
+
+def obter_valor_refeitorio():
+    chrome_options = Options()
+    chrome_options.add_argument("--incognito")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_experimental_option("prefs", {
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False
+    })
+
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    try:
+        driver.get("http://10.10.1.112/")
+        time.sleep(3)
+
+        driver.find_element(By.ID, "ext-gen249").click()
+        time.sleep(3)
+
+        driver.find_element(By.XPATH, "//span[text()='Contadores de uso']").click()
+        time.sleep(3)
+
+        valor_ultima_celula = driver.find_element(
+            By.XPATH,
+            "(//table[contains(@class, 'x-grid3-row-table')]//tr)[3]//td[last()]//div"
+        ).text
+
+        print(f"Valor extraído (Setor Refeitório): {valor_ultima_celula}")
+        valor_int = int(valor_ultima_celula.replace(",", "").strip())
+        valor_mensal = valor_int - 41729  # 🛠 Ajuste conforme base do setor
+
+        return {
+            "valor_coletado": valor_ultima_celula,
+            "valor_mensal": valor_mensal,
+            "ultimo_usuario": "Não disponível"
+        }
+
+    except Exception as e:
+        print(f"Erro ao obter valor do setor Refeitório: {e}")
+        return {"erro": str(e)}
+
+    finally:
+        time.sleep(2)
+        driver.quit()
+
+# ================= RH =================
+@app.route('/rh', methods=['GET'])
+def rota_rh():
+    print("Rodando coleta RH...")  
+    try:
+        resultado = coletar_rh()
+        return jsonify(resultado)
+    except Exception as e:
+        return jsonify({"erro": str(e)})
+
+def coletar_rh():
+    driver = criar_driver()
+    try:
+        driver.get("http://10.10.1.113")
+
+        driver.find_element(By.ID, "i0019").send_keys("1234")
+        driver.find_element(By.ID, "i2101").send_keys("1234")
+        time.sleep(1)
+
+        driver.find_element(By.ID, "submitButton").click()
+        time.sleep(2)
+
+        driver.find_element(By.CLASS_NAME, "Standby").click()
+        driver.find_element(By.LINK_TEXT, "Verificar Contador").click()
+
+        valor_td = driver.find_element(By.XPATH, '//tr[th[contains(text(), "101: Total 1")]]/td').text
+
+        driver.find_element(By.LINK_TEXT, "Log do Trabalho").click()
+        time.sleep(1)
+
+        tabela = driver.find_element(By.XPATH, '//div[@class="ItemListComponent"]/table')
+        linhas = tabela.find_elements(By.XPATH, './/tbody/tr')
+
+        if linhas:
+            celulas = linhas[0].find_elements(By.TAG_NAME, 'td')
+            nome_usuario = celulas[6].text if len(celulas) > 6 else "N/A"
+        else:
+            nome_usuario = "Sem dados"
+
+        total_int = int(valor_td.replace(".", "").strip())
+        valor_mensal = total_int - 48574  # Base inicial RH (ajuste conforme necessário)
+
+        return {
+            "total_valor": valor_td,
+            "ultimo_usuario": nome_usuario,
+            "valor_mensal": valor_mensal
+        }
+
+    except Exception as e:
+        return {"erro": str(e)}
+
+    finally:
+        driver.quit()
 
 
 def pegar_dado_setor(url):

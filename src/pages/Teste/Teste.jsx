@@ -10,19 +10,25 @@ import PcmiCard from "../../components/cards/Pcmi.jsx";
 import LaboratorioCard from "../../components/cards/Laboratorio.jsx";
 import FrotaCard from "../../components/cards/Frota.jsx";
 import FaturamentoCard from "../../components/cards/Faturamento.jsx";
+import RhCard from "../../components/cards/Rh.jsx";
+import RefeitorioCard from "../../components/cards/Refeitorio.jsx";
+import SegtrabCard from "../../components/cards/Seg.jsx";
 
-// Mapeamento de IPs por setor
-const ipPorSetor = {
-  Administrativo: "10.10.1.90",
-  Almoxidagro: "10.10.1.102",
-  Agrícola: "10.10.1.101",
-  Jurídico: "10.10.1.109",
-  Enfermagem: "10.10.1.105",
-  AlmoxInd: "10.10.1.103",
-  PCMI: "10.10.1.111",
-  Laboratório: "10.10.1.110",
-  Frota: "10.10.1.108",
-  Faturamento: "10.10.1.106",
+// Mapeamento completo de IPs e números de série
+const infoPorSetor = {
+  Agrícola: { ip: "10.10.1.101", serie: "ZDDPBQAH4000K1Z" },
+  Almoxidagro: { ip: "10.10.1.102", serie: "ZDDPBQAH7000WJV" },
+  AlmoxInd: { ip: "10.10.1.103", serie: "ZER4BQAF500136W" },
+  Enfermagem: { ip: "10.10.1.105", serie: "ZER4BQAG2000BKT" },
+  Faturamento: { ip: "10.10.1.106", serie: "ZER4BQAF3009BVX" },
+  Administrativo: { ip: "10.10.1.90", serie: "Canon" },
+  Frota: { ip: "10.10.1.108", serie: "ZDDPB07J9103HWY" },
+  Jurídico: { ip: "10.10.1.109", serie: "Canon" },
+  Laboratório: { ip: "10.10.1.110", serie: "ZER4BQAG70006PP" },
+  PCMI: { ip: "10.10.1.111", serie: "ZDDPB07K512FAWY" },
+  Refeitório: { ip: "10.10.1.112", serie: "ZER4BQAF5001QCW" },
+  RH: { ip: "10.10.1.113", serie: "Canon" },
+  SEGTRAB: { ip: "10.10.1.114", serie: "ZER4BQADB04107D" },
 };
 
 function Teste() {
@@ -43,22 +49,28 @@ function Teste() {
         }
       });
 
+      const info = infoPorSetor[nomeSetor] || { ip: "Desconhecido", serie: "Desconhecido" };
+
       resultados.push({
         Setor: nomeSetor,
         "Total de Impressões": impressoes,
-        IP: ipPorSetor[nomeSetor] || "Desconhecido",
+        IP: info.ip,
+        "Número de Série": info.serie,
       });
     });
 
-    // Geração da planilha Excel
     const ws = XLSX.utils.json_to_sheet(resultados);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Impressões");
+    XLSX.utils.book_append_sheet(wb, ws, "Impressoras");
 
-    // Estilo: Define largura das colunas
-    ws["!cols"] = [{ wch: 20 }, { wch: 25 }, { wch: 20 }];
+    ws["!cols"] = [
+      { wch: 20 },
+      { wch: 25 },
+      { wch: 20 },
+      { wch: 25 },
+    ];
 
-    XLSX.writeFile(wb, "relatorio_impressoras.xlsx");
+    XLSX.writeFile(wb, "relatorio_impressoras_completo.xlsx");
   };
 
   return (
@@ -82,6 +94,9 @@ function Teste() {
         <LaboratorioCard />
         <FrotaCard />
         <FaturamentoCard />
+        <RhCard />
+        <RefeitorioCard />
+        <SegtrabCard />
       </div>
     </div>
   );
