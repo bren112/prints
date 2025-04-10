@@ -68,7 +68,14 @@ p{
       margin: 2pc;
 }
 
-
+button{
+  cursor: pointer;
+  background-color: #93d50d;
+  border: none;
+  height: 2pc;
+  width: 6pc;
+  border-radius: 8px;
+}
 #form-container {
   width: 100%;
   max-width: 400px;
