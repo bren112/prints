@@ -17,7 +17,7 @@ function SegtrabCard() {
     setCarregando(true);
     setErro(null);
 
-    axios.get("http://localhost:5000/segtrab")
+    axios.get("http://10.10.10.242:5000/segtrab")
       .then(res => {
         setDados(res.data);
         setMostrar(true);

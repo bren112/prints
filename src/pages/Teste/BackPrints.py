@@ -58,7 +58,7 @@ def coletar_segtrab():
         print(f"Valor extraído (Setor SEGTRAB): {valor_ultima_celula}")
         valor_int = int(valor_ultima_celula.replace(",", "").strip())
 
-        valor_mensal = valor_int - 11859  # base inicial, ajuste se necessário
+        valor_mensal = valor_int - 291227  # base inicial, ajuste se necessário
 
         return {
             "valor_coletado": valor_ultima_celula,
@@ -827,4 +827,5 @@ def faturamento():
 
 # ================= RUN APP =================
 if __name__ == '__main__':
-    app.run(debug=True)
+  app.run(host='0.0.0.0', port=5000, debug=True)
+

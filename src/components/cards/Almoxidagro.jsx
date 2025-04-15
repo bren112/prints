@@ -16,7 +16,7 @@ function AlmoxidAgroCard() {
     setCarregando(true);
     setErro(null);
 
-    axios.get("http://localhost:5000/almoxidAgro")
+    axios.get("http://10.10.10.242:5000/almoxidAgro")
       .then(res => {
         setDados(res.data);
         setMostrar(true);

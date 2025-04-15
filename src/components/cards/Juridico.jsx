@@ -17,7 +17,7 @@ function JuridicoCard() {
     setCarregando(true);
     setErro(null);
 
-    axios.get("http://localhost:5000/juridico")
+    axios.get("http://10.10.10.242:5000/juridico")
       .then(res => {
         setDados(res.data);
         setMostrar(true);

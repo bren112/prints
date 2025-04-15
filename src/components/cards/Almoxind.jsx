@@ -17,7 +17,7 @@ function AlmoxindCard() {
     setCarregando(true);
     setErro(null);
 
-    axios.get("http://localhost:5000/almoxind")
+    axios.get("http://10.10.10.242:5000/almoxind")
       .then(res => {
         setDados(res.data);
         setMostrar(true);

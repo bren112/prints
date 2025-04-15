@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Ramais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 300px; 
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #685757;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Pesquisa de Ramais</h2>
+    <input type="text" id="searchInput" placeholder="Digite o nome ou ramal..." onkeyup="searchTable()">
+    <table id="ramaisTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Ramal</th>
+                <th>Setor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Portaria/Recepção -->
+            <tr><td>Port. Agro</td><td>9028/9188</td><td>Portaria/Recepção</td></tr>
+            <tr><td>Port. Balança</td><td>9166</td><td>Portaria/Recepção</td></tr>
+            <tr><td>Port. Chapeira</td><td>9149</td><td>Portaria/Recepção</td></tr>
+            <tr><td>Port. Casa Grande</td><td>9494</td><td>Portaria/Recepção</td></tr>
+            <tr><td>Recep. Escritório</td><td>9168</td><td>Portaria/Recepção</td></tr>
+            <!-- Agrícola -->
+            <tr><td>Capitão</td><td>9187</td><td>Agrícola</td></tr>
+            <tr><td>Cláudio/Carlos</td><td>9261</td><td>Agrícola</td></tr>
+            <tr><td>Fábrica Adubo</td><td>9104</td><td>Agrícola</td></tr>
+            <tr><td>Wanessa</td><td>9100</td><td>Agrícola</td></tr>
+            <!-- Almoxarifado Agro -->
+            <tr><td>Fabrizio</td><td>9022</td><td>Almoxarifado Agro</td></tr>
+            <tr><td>Larissa</td><td>9109/9131</td><td>Almoxarifado Agro</td></tr>
+            <tr><td>Gustavo Julíate</td><td>9066</td><td>Almoxarifado Agro</td></tr>
+            <tr><td>Hilton</td><td>9095</td><td>Almoxarifado Agro</td></tr>
+            <tr><td>João</td><td>9052</td><td>Almoxarifado Agro</td></tr>
+            <tr><td>Márcio</td><td>9030</td><td>Almoxarifado Agro</td></tr>
+            <!-- Copa -->
+            <tr><td>Copa</td><td>9064</td><td>Copa</td></tr>
+            <tr><td>Copa Adm.</td><td>9265</td><td>Copa</td></tr>
+            <!-- Contabilidade -->
+            <tr><td>Rosemeire</td><td>9013</td><td>Contabilidade</td></tr>
+            <tr><td>Maysa</td><td>9132</td><td>Contabilidade</td></tr>
+            <tr><td>Hyan</td><td>9268</td><td>Contabilidade</td></tr>
+            <tr><td>João</td><td>9043</td><td>Contabilidade</td></tr>
+            <tr><td>Cleyton</td><td>9055</td><td>Contabilidade</td></tr>
+            <tr><td>Henrique</td><td>9070</td><td>Contabilidade</td></tr>
+            <tr><td>Anderson</td><td>9017</td><td>Contabilidade</td></tr>
+            <!-- Departamento Pessoal / RH -->
+            <tr><td>Thiago</td><td>9038</td><td>Departamento Pessoal / RH</td></tr>
+            <tr><td>Cicilia</td><td>9025</td><td>Departamento Pessoal / RH</td></tr>
+            <tr><td>Amanda</td><td>9081</td><td>Departamento Pessoal / RH</td></tr>
+            <tr><td>Mayara</td><td>9082</td><td>Departamento Pessoal / RH</td></tr>
+            <tr><td>Vandir</td><td>9083</td><td>Departamento Pessoal / RH</td></tr>
+            <tr><td>Rafaela Social</td><td>9034</td><td>Departamento Pessoal / RH</td></tr>
+            <tr><td>Aline</td><td>9056</td><td>Departamento Pessoal / RH</td></tr>
+            <tr><td>DHO</td><td>905</td><td>Departamento Pessoal / RH</td></tr>
+            <!-- Diretoria -->
+            <tr><td>Alex</td><td>9015/9016</td><td>Diretoria</td></tr>
+            <tr><td>João Bosco</td><td>9033</td><td>Diretoria</td></tr>
+            <tr><td>Eluide</td><td>9031</td><td>Diretoria</td></tr>
+            <tr><td>Rita Lúcia</td><td>9027</td><td>Diretoria</td></tr>
+            <tr><td>Roseleine</td><td>9009</td><td>Diretoria</td></tr>
+            <tr><td>Sara</td><td>9024</td><td>Diretoria</td></tr>
+            <tr><td>Fax</td><td>9003</td><td>Diretoria</td></tr>
+            <!-- Enfermagem -->
+            <tr><td>Aline</td><td>9117</td><td>Enfermagem</td></tr>
+            <!-- Financeiro -->
+            <tr><td>Nilton</td><td>9037</td><td>Financeiro</td></tr>
+            <tr><td>Gustavo Frias</td><td>9023</td><td>Financeiro</td></tr>
+            <tr><td>Maurivan</td><td>9021</td><td>Financeiro</td></tr>
+            <tr><td>Naca</td><td>9308</td><td>Financeiro</td></tr>
+            <tr><td>Richard</td><td>9012</td><td>Financeiro</td></tr>
+            <tr><td>Financeiro</td><td>9048</td><td>Financeiro</td></tr>
+            <tr><td>Cabanha</td><td>9042</td><td>Financeiro</td></tr>
+            <!-- Informática -->
+            <tr><td>Douglas</td><td>9019</td><td>Informática</td></tr>
+            <tr><td>Rafael - Suporte</td><td>9018</td><td>Informática</td></tr>
+            <tr><td>Heloise</td><td>9032</td><td>Informática</td></tr>
+            <tr><td>Breno</td><td>9073</td><td>Informática</td></tr>
+            <tr><td>Borracharia</td><td>9118</td><td>Informática</td></tr>
+            <tr><td>Dunga</td><td>9099</td><td>Informática</td></tr>
+            <tr><td>Samuel / Albino</td><td>9423</td><td>Informática</td></tr>
+            <tr><td>Fábio</td><td>9112</td><td>Informática</td></tr>
+            <!-- Jurídico -->
+            <tr><td>Dr. Barbalho</td><td>9005</td><td>Jurídico</td></tr>
+            <tr><td>Eliane</td><td>9004</td><td>Jurídico</td></tr>
+            <tr><td>Dr. Carlinhos</td><td>9001/9307</td><td>Jurídico</td></tr>
+            <tr><td>Dr. Cristian</td><td>9215</td><td>Jurídico</td></tr>
+            <tr><td>Dr. Edgard</td><td>9056</td><td>Jurídico</td></tr>
+            <tr><td>Dr. Douglas</td><td>9050</td><td>Jurídico</td></tr>
+            <tr><td>Dr. Leandro</td><td>9203</td><td>Jurídico</td></tr>
+            <tr><td>Reunião Jurid.</td><td>9051</td><td>Jurídico</td></tr>
+            <tr><td>Sala 02</td><td>9119</td><td>Jurídico</td></tr>
+            <tr><td>Sala 03</td><td>9041</td><td>Jurídico</td></tr>
+            <!-- Almoxarifado Ind. -->
+            <tr><td>Marcos</td><td>9006</td><td>Almoxarifado Ind.</td></tr>
+            <tr><td>Pimenta</td><td>9185</td><td>Almoxarifado Ind.</td></tr>
+            <tr><td>Perrone</td><td>9020</td><td>Almoxarifado Ind.</td></tr>
+            <tr><td>Marcelo Perrone</td><td>9057</td><td>Almoxarifado Ind.</td></tr>
+            <tr><td>Bruno</td><td>9350</td><td>Almoxarifado Ind.</td></tr>
+            <!-- Balança / Expedição / Transporte -->
+            <tr><td>Balança</td><td>9125</td><td>Balança / Expedição / Transporte</td></tr>
+            <tr><td>Roberto</td><td>9040/9084</td><td>Balança / Expedição / Transporte</td></tr>
+            <tr><td>Márcia</td><td>9053</td><td>Balança / Expedição / Transporte</td></tr>
+            <tr><td>Marcos</td><td>9191</td><td>Balança / Expedição / Transporte</td></tr>
+            <tr><td>Faturamento</td><td>9026</td><td>Balança / Expedição / Transporte</td></tr>
+            <tr><td>Transporte</td><td>9267</td><td>Balança / Expedição / Transporte</td></tr>
+            <tr><td>Central</td><td>9205</td><td>Balança / Expedição / Transporte</td></tr>
+            <tr><td>Sacarose</td><td>9204</td><td>Balança / Expedição / Transporte</td></tr>
+            <tr><td>Carregamento Alcod</td><td>9085</td><td>Balança / Expedição / Transporte</td></tr>
+            <!-- Indústria Geral -->
+            <tr><td>Caldeira</td><td>400</td><td>Indústria Geral</td></tr>
+            <tr><td>Juan</td><td>9150</td><td>Indústria Geral</td></tr>
+            <tr><td>Gerador</td><td>9192</td><td>Indústria Geral</td></tr>
+            <tr><td>Oficina</td><td>9194</td><td>Indústria Geral</td></tr>
+            <tr><td>Destilaria</td><td>9189</td><td>Indústria Geral</td></tr>
+            <tr><td>Moenda</td><td>401</td><td>Indústria Geral</td></tr>
+            <tr><td>Ramon (PCM)</td><td>9058</td><td>Indústria Geral</td></tr>
+            <tr><td>PCMI</td><td>9059</td><td>Indústria Geral</td></tr>
+            <tr><td>Elétrica</td><td>9312/9190</td><td>Indústria Geral</td></tr>
+            <tr><td>Instrumentação</td><td>9068</td><td>Indústria Geral</td></tr>
+            <tr><td>Salão Açúcar</td><td>9200</td><td>Indústria Geral</td></tr>
+            <tr><td>Secretária Ind.</td><td>9350</td><td>Indústria Geral</td></tr>
+            <!-- Segurança -->
+            <tr><td>Andrea/Antônio</td><td>9352</td><td>Segurança</td></tr>
+            <tr><td>Murilo</td><td>9147</td><td>Segurança</td></tr>
+            <tr><td>Minato</td><td>9140</td><td>Segurança</td></tr>
+            <tr><td>Felipe</td><td>9422</td><td>Segurança</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        function searchTable() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#ramaisTable tbody tr');
+
+            rows.forEach(row => {
+                const name = row.cells[0].textContent.toLowerCase();
+                const ramal = row.cells[1].textContent.toLowerCase();
+                if (name.includes(input) || ramal.includes(input)) {
+                    row.classList.remove('hidden');
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

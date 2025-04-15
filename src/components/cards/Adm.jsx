@@ -16,7 +16,7 @@ function AdministrativoCard() {
     setCarregando(true);
     setErro(null);
 
-    axios.get("http://localhost:5000/administrativo")
+    axios.get("http://10.10.10.242:5000/administrativo")
       .then(res => {
         setDados(res.data);
         setMostrar(true);
